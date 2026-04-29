@@ -90,28 +90,7 @@ NodeParam:
     url: http://www.google.com/blank.html
     interval: 6
 proxy-providers:
-  Ash:
-    url: https://staticasset.flowaccess.org/signal/channel/receiver?token=4afdaec70682ee1bb3ee85c7178703b8
-    type: http
-    interval: 216000
-    health-check:
-      enable: true
-      url: http://www.google.com/blank.html
-      interval: 6
-    path: ./proxy_providers/Ash.yaml
-    override:
-      additional-prefix: "[Ash] "
-  Guai Emby:
-    url: https://2026.youzizizi.top/api/v1/client/subscribe?token=c01fc6360d7cfde746b328d4a18463fc
-    type: http
-    interval: 216000
-    health-check:
-      enable: true
-      url: http://www.google.com/blank.html
-      interval: 6
-    path: ./proxy_providers/Guai Emby.yaml
-    override:
-      additional-prefix: "[Guai Emby] "
+
 UrlTest:
   type: url-test
   interval: 6
