@@ -598,8 +598,8 @@ rules:
   - GEOIP, CN, DIRECT
   - DOMAIN-KEYWORD, ash.yt, Emby
   - DOMAIN-KEYWORD, asubaka, Emby
-  - DOMAIN, 8211992.xyz, DIRECT
-  - DOMAIN, 764374236.xyz, Emby
-  - DOMAIN-KEYWORD, autodesk.com, DIRECT
+  - DOMAIN-SUFFIX, 8211992.xyz, DIRECT
+  - DOMAIN-SUFFIX, 764374236.xyz, Emby
+  - DOMAIN-SUFFIX, autodesk.com, DIRECT
   - MATCH, 黑白名单
 bind-address: "*"
