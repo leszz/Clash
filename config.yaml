@@ -574,10 +574,7 @@ rules:
   - RULE-SET, 国际媒体, 国际媒体
   - RULE-SET, Github, Github
   - GEOIP, CN, DIRECT
-  - DOMAIN-KEYWORD, ash.yt, Emby
-  - DOMAIN-KEYWORD, asubaka, Emby
   - DOMAIN-SUFFIX, 8211992.xyz, DIRECT
-  - DOMAIN-SUFFIX, 764374236.xyz, Emby
   - DOMAIN-SUFFIX, autodesk.com, DIRECT
   - MATCH, 黑白名单
 bind-address: "*"
