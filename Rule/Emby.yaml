@@ -7,7 +7,7 @@
 # DOMAIN-SUFFIX: 45
 # PROCESS-NAME: 1
 # TOTAL: 52
-
+payload:
   - DOMAIN,emby.enjoyit.eu.org
   - DOMAIN,emby.lcloud.wiki
   - DOMAIN,notnetflix.cos.cat
