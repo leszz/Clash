@@ -454,7 +454,7 @@ rule-providers:
     format: yaml
     proxy: DIRECT
     path: ./rules/Emby.yaml
-    url: https://kelee.one/Tool/Clash/Rule/EmbyServer.yaml
+    url: https://raw.githubusercontent.com/leszz/Clash/refs/heads/mihomo/Rule/Emby.yaml
   iCloudChina:
     type: http
     behavior: classical
@@ -574,10 +574,7 @@ rules:
   - RULE-SET, 国际媒体, 国际媒体
   - RULE-SET, Github, Github
   - GEOIP, CN, DIRECT
-  - DOMAIN-KEYWORD, ash.yt, Emby
-  - DOMAIN-KEYWORD, asubaka, Emby
   - DOMAIN-SUFFIX, 8211992.xyz, DIRECT
-  - DOMAIN-SUFFIX, 764374236.xyz, Emby
   - DOMAIN-SUFFIX, autodesk.com, DIRECT
   - MATCH, 黑白名单
 bind-address: "*"
