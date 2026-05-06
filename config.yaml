@@ -454,7 +454,7 @@ rule-providers:
     format: yaml
     proxy: DIRECT
     path: ./rules/Emby.yaml
-    url: https://kelee.one/Tool/Clash/Rule/EmbyServer.yaml
+    url: https://raw.githubusercontent.com/leszz/Clash/refs/heads/mihomo/Rule/Emby.list
   iCloudChina:
     type: http
     behavior: classical
