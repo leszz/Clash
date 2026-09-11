@@ -294,7 +294,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Final.png
   - name: 香港节点
     type: url-test
-    hidden: ture
+    hidden: true
     interval: 6
     tolerance: 20
     lazy: true
@@ -307,7 +307,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
   - name: 台湾节点
     type: url-test
-    hidden: ture
+    hidden: true
     interval: 6
     tolerance: 20
     lazy: true
@@ -320,7 +320,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/TW.png
   - name: 日本节点
     type: url-test
-    hidden: ture
+    hidden: true
     interval: 6
     tolerance: 20
     lazy: true
@@ -333,7 +333,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/JP.png
   - name: 韩国节点
     type: url-test
-    hidden: ture
+    hidden: true
     interval: 6
     tolerance: 20
     lazy: true
@@ -346,7 +346,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/KR.png
   - name: 狮城节点
     type: url-test
-    hidden: ture
+    hidden: true
     interval: 6
     tolerance: 20
     lazy: true
@@ -359,7 +359,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/SG.png
   - name: 美国节点
     type: url-test
-    hidden: ture
+    hidden: true
     interval: 6
     tolerance: 20
     lazy: true
