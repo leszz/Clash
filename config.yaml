@@ -235,28 +235,135 @@ policy-groups:
     include-all-providers: true
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/UN.png
 
+rule-providers:
+  LAN_SPLITTER:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/LAN_SPLITTER.yaml
+    interval: 86400
+  Direct:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/Direct.yaml
+    interval: 86400
+  Proxy:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/Proxy.yaml
+    interval: 86400
+  ChinaDownloadCDN:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml
+    interval: 86400
+  InternationalDownloadCDN:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/InternationalDownloadCDN.yaml
+    interval: 86400
+  AI:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/AI.yaml
+    interval: 86400
+  SpeedtestInternational:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/SpeedtestInternational.yaml
+    interval: 86400
+  Steam:
+    type: http
+    behavior: classical
+    url: https://rule.kelee.one/Clash/Steam.yaml
+    interval: 86400
+  Emby:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/leszz/Clash/refs/heads/mihomo/Rule/Emby.yaml
+    interval: 86400
+  TestFlight:
+    type: http
+    behavior: classical
+    url: https://rule.kelee.one/Clash/TestFlight.yaml
+    interval: 86400
+  iCloudChina:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/iCloudChina.yaml
+    interval: 86400
+  ApplePushNotificationService:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/ApplePushNotificationService.yaml
+    interval: 86400
+  AppleSoftwareUpdates:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/AppleSoftwareUpdates.yaml
+    interval: 86400
+  AppleAccount:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/AppleAccount.yaml
+    interval: 86400
+  AppStore:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/AppStore.yaml
+    interval: 86400
+  Microsoft:
+    type: http
+    behavior: classical
+    url: https://rule.kelee.one/Clash/Microsoft.yaml
+    interval: 86400
+  Google:
+    type: http
+    behavior: classical
+    url: https://rule.kelee.one/Clash/Google.yaml
+    interval: 86400
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://rule.kelee.one/Clash/Telegram.yaml
+    interval: 86400
+  ESET_China:
+    type: http
+    behavior: classical
+    url: https://kelee.one/Tool/Clash/Rule/ESET_China.yaml
+    interval: 86400
+  GlobalMedia:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml
+    interval: 86400
+  Github:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml
+    interval: 86400
+
 rules:
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/LAN_SPLITTER.yaml, DIRECT
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/Direct.yaml, DIRECT
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/Proxy.yaml, 黑白名单
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml, DIRECT
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/InternationalDownloadCDN.yaml, 境外下载
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/AI.yaml, AI
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/SpeedtestInternational.yaml, SpeedtestIntl
-  - RULE-SET, https://rule.kelee.one/Clash/Steam.yaml, Steam
-  - RULE-SET, https://raw.githubusercontent.com/leszz/Clash/refs/heads/mihomo/Rule/Emby.yaml, Emby
-  - RULE-SET, https://rule.kelee.one/Clash/TestFlight.yaml, TestFlight
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/iCloudChina.yaml, DIRECT
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/ApplePushNotificationService.yaml, DIRECT
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/AppleSoftwareUpdates.yaml, DIRECT
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/AppleAccount.yaml, Apple账户
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/AppStore.yaml, App Store
-  - RULE-SET, https://rule.kelee.one/Clash/Microsoft.yaml, Microsoft
-  - RULE-SET, https://rule.kelee.one/Clash/Google.yaml, Google
-  - RULE-SET, https://rule.kelee.one/Clash/Telegram.yaml, Telegram
-  - RULE-SET, https://kelee.one/Tool/Clash/Rule/ESET_China.yaml, DIRECT
-  - RULE-SET, https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml, 国际媒体
-  - RULE-SET, https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml, Github
+  - RULE-SET, LAN_SPLITTER, DIRECT
+  - RULE-SET, Direct, DIRECT
+  - RULE-SET, Proxy, 黑白名单
+  - RULE-SET, ChinaDownloadCDN, DIRECT
+  - RULE-SET, InternationalDownloadCDN, 境外下载
+  - RULE-SET, AI, AI
+  - RULE-SET, SpeedtestInternational, SpeedtestIntl
+  - RULE-SET, Steam, Steam
+  - RULE-SET, Emby, Emby
+  - RULE-SET, TestFlight, TestFlight
+  - RULE-SET, iCloudChina, DIRECT
+  - RULE-SET, ApplePushNotificationService, DIRECT
+  - RULE-SET, AppleSoftwareUpdates, DIRECT
+  - RULE-SET, AppleAccount, Apple账户
+  - RULE-SET, AppStore, App Store
+  - RULE-SET, Microsoft, Microsoft
+  - RULE-SET, Google, Google
+  - RULE-SET, Telegram, Telegram
+  - RULE-SET, ESET_China, DIRECT
+  - RULE-SET, GlobalMedia, 国际媒体
+  - RULE-SET, Github, Github
   - GEOIP, CN, DIRECT
   - DOMAIN-SUFFIX, 8211992.xyz, DIRECT
   - DOMAIN-SUFFIX, autodesk.com, DIRECT
