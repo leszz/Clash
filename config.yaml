@@ -343,28 +343,28 @@ rule-providers:
     interval: 86400
 
 rules:
-  - RULE-SET, LAN_SPLITTER, DIRECT
-  - RULE-SET, Direct, DIRECT
-  - RULE-SET, Proxy, 黑白名单
-  - RULE-SET, ChinaDownloadCDN, DIRECT
-  - RULE-SET, InternationalDownloadCDN, 境外下载
-  - RULE-SET, AI, AI
-  - RULE-SET, SpeedtestInternational, SpeedtestIntl
-  - RULE-SET, Steam, Steam
-  - RULE-SET, Emby, Emby
-  - RULE-SET, TestFlight, TestFlight
-  - RULE-SET, iCloudChina, DIRECT
-  - RULE-SET, ApplePushNotificationService, DIRECT
-  - RULE-SET, AppleSoftwareUpdates, DIRECT
-  - RULE-SET, AppleAccount, Apple账户
-  - RULE-SET, AppStore, App Store
-  - RULE-SET, Microsoft, Microsoft
-  - RULE-SET, Google, Google
-  - RULE-SET, Telegram, Telegram
-  - RULE-SET, ESET_China, DIRECT
-  - RULE-SET, GlobalMedia, 国际媒体
-  - RULE-SET, Github, Github
-  - GEOIP, CN, DIRECT
-  - DOMAIN-SUFFIX, 8211992.xyz, DIRECT
-  - DOMAIN-SUFFIX, autodesk.com, DIRECT
-  - FINAL, 黑白名单
+  - rule_set, LAN_SPLITTER, DIRECT
+  - rule_set, Direct, DIRECT
+  - rule_set, Proxy, 黑白名单
+  - rule_set, ChinaDownloadCDN, DIRECT
+  - rule_set, InternationalDownloadCDN, 境外下载
+  - rule_set, AI, AI
+  - rule_set, SpeedtestInternational, SpeedtestIntl
+  - rule_set, Steam, Steam
+  - rule_set, Emby, Emby
+  - rule_set, TestFlight, TestFlight
+  - rule_set, iCloudChina, DIRECT
+  - rule_set, ApplePushNotificationService, DIRECT
+  - rule_set, AppleSoftwareUpdates, DIRECT
+  - rule_set, AppleAccount, Apple账户
+  - rule_set, AppStore, App Store
+  - rule_set, Microsoft, Microsoft
+  - rule_set, Google, Google
+  - rule_set, Telegram, Telegram
+  - rule_set, ESET_China, DIRECT
+  - rule_set, GlobalMedia, 国际媒体
+  - rule_set, Github, Github
+  - geoip, CN, DIRECT
+  - domain_suffix, 8211992.xyz, DIRECT
+  - domain_suffix, autodesk.com, DIRECT
+  - match, 黑白名单
