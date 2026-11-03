@@ -1,23 +1,134 @@
-general:
-  tun: true
-  compatibility-mode: true
-  skip-proxy-address:
-    - 192.168.0.0/16
-    - 10.0.0.0/8
-    - 172.16.0.0/12
-    - localhost
-    - "*.local"
-
+mixed-port: 7890
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 24
+find-process-mode: always
+global-client-fingerprint: chrome
+allow-lan: false
+log-level: info
+udp: true
+geox-url:
+  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
+  asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 443
+      override-destination: false
+    TLS:
+      ports:
+        - 443
+    QUIC:
+      ports:
+        - 443
+        - 8443
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - +.push.apple.com
+  skip-dst-address:
+    - 91.105.192.0/23
+    - 91.108.4.0/22
+    - 91.108.8.0/21
+    - 91.108.16.0/21
+    - 91.108.56.0/22
+    - 95.161.64.0/20
+    - 149.154.160.0/20
+    - 185.76.151.0/24
+    - 2001:67c:4e8::/48
+    - 2001:b28:f23c::/47
+    - 2001:b28:f23f::/48
+    - 2a0a:f280:203::/48
+listeners:
+  - name: socks5-in-1
+    type: socks
+    port: 10808
+    listen: 0.0.0.0
+    udp: true
+    users: []
+    proxy: DIRECT
 dns:
   enable: true
-  listen: 127.0.0.1:53
+  prefer-h3: true
+  listen: 0.0.0.0:1053
+  ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*"
+    - +.lan
+    - +.local
+    - time.*.com
+    - ntp.*.com
+    - +.market.xiaomi.com
+  default-nameserver:
+    - tls://223.5.5.5
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+  use-hosts: false
+  use-system-hosts: false
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+NodeParam:
+  type: http
+  interval: 3600
+  health-check:
+    enable: true
+    url: http://www.gstatic.com/generate_204
+    interval: 6
 
-policy-groups:
+UrlTest:
+  type: url-test
+  interval: 6
+  tolerance: 20
+  lazy: true
+  url: http://www.gstatic.com/generate_204
+  disable-udp: false
+  timeout: 2000
+  max-failed-times: 3
+  hidden: true
+  include-all-providers: true
+FallBack:
+  type: fallback
+  interval: 6
+  lazy: true
+  url: http://www.gstatic.com/generate_204
+  disable-udp: false
+  timeout: 2000
+  max-failed-times: 3
+  hidden: true
+  include-all-providers: true
+LoadBalance:
+  type: load-balance
+  interval: 6
+  lazy: true
+  url: http://www.gstatic.com/generate_204
+  disable-udp: false
+  strategy: consistent-hashing
+  timeout: 2000
+  max-failed-times: 3
+  hidden: true
+  include-all-providers: true
+RuleProviders:
+  type: http
+  behavior: classical
+  interval: 3600
+  format: yaml
+  proxy: DIRECT
+proxy-groups:
   - name: App Store
     type: select
     proxies:
@@ -30,7 +141,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/appstore.png
-
   - name: Apple账户
     type: select
     proxies:
@@ -43,7 +153,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Apple.png
-
   - name: TestFlight
     type: select
     proxies:
@@ -56,7 +165,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/testflight.png
-
   - name: Microsoft
     type: select
     proxies:
@@ -69,7 +177,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Microsoft.png
-
   - name: Steam
     type: select
     proxies:
@@ -82,7 +189,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Steam.png
-
   - name: Google
     type: select
     proxies:
@@ -95,7 +201,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Google.png
-
   - name: Telegram
     type: select
     proxies:
@@ -108,7 +213,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png
-
   - name: Github
     type: select
     proxies:
@@ -121,7 +225,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/github.png
-
   - name: 国际媒体
     type: select
     proxies:
@@ -134,7 +237,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Streaming.png
-
   - name: 境外下载
     type: select
     proxies:
@@ -147,7 +249,6 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Download.png
-
   - name: AI
     type: select
     proxies:
@@ -160,14 +261,13 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
-
   - name: SpeedtestIntl
     type: select
     include-all-providers: true
+    filter: ^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$
     proxies:
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Speedtest.png
-
   - name: Emby
     type: select
     proxies:
@@ -180,9 +280,8 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Emby.png
-
   - name: 黑白名单
-    type: select
+    type: fallback
     proxies:
       - 香港节点
       - 台湾节点
@@ -193,178 +292,297 @@ policy-groups:
       - 特殊节点
       - DIRECT
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Final.png
-
   - name: 香港节点
     type: url-test
+    hidden: false
+    interval: 6
+    tolerance: 20
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    disable-udp: false
+    timeout: 2000
+    max-failed-times: 3
     include-all-providers: true
-    filter: "(?i)🇭🇰|香港|HK|Hong"
+    filter: ^(?=.*((?i)🇭🇰|香港|(\b(HK|HKG|Hong)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
-
   - name: 台湾节点
     type: url-test
+    hidden: false
+    interval: 6
+    tolerance: 20
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    disable-udp: false
+    timeout: 2000
+    max-failed-times: 3
     include-all-providers: true
-    filter: "(?i)🇹🇼|台湾|TW|Tai"
+    filter: ^(?=.*((?i)🇹🇼|台湾|(\b(TW|TWN|Tai|Taiwan)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/TW.png
-
   - name: 日本节点
     type: url-test
+    hidden: false
+    interval: 6
+    tolerance: 20
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    disable-udp: false
+    timeout: 2000
+    max-failed-times: 3
     include-all-providers: true
-    filter: "(?i)🇯🇵|日本|JP|Japan"
+    filter: ^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|JPN|Japan)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/JP.png
-
   - name: 韩国节点
     type: url-test
+    hidden: false
+    interval: 6
+    tolerance: 20
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    disable-udp: false
+    timeout: 2000
+    max-failed-times: 3
     include-all-providers: true
-    filter: "(?i)🇰🇷|韩国|KR|Korea"
+    filter: ^(?=.*((?i)🇰🇷|韩国|韓|首尔|(\b(KR|KOR|Korea)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/KR.png
-
   - name: 狮城节点
     type: url-test
+    hidden: false
+    interval: 6
+    tolerance: 20
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    disable-udp: false
+    timeout: 2000
+    max-failed-times: 3
     include-all-providers: true
-    filter: "(?i)🇸🇬|新加坡|SG|Singapore"
+    filter: ^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|SGP|Singapore)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/SG.png
-
   - name: 美国节点
     type: url-test
+    hidden: false
+    interval: 6
+    tolerance: 20
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    disable-udp: false
+    timeout: 2000
+    max-failed-times: 3
     include-all-providers: true
-    filter: "(?i)🇺🇸|美国|US|United States"
+    filter: ^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|USA|United
+      States)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
-
   - name: 特殊节点
     type: select
+    proxies:
+      - DIRECT
     include-all-providers: true
+    filter: ^(?=.*(.))(?!.*((?i)港|台|日|韩|坡|美|HK|US|TW|JP|KR|SG|Hong|Tai|Japan|Korea|Singapore|States|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/UN.png
-
+  - name: GLOBAL
+    type: select
+    proxies:
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 韩国节点
+      - 狮城节点
+      - 美国节点
+      - 特殊节点
+      - DIRECT
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Global.png
 rule-providers:
-  LAN_SPLITTER:
+  LAN:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/Lan.yaml
     url: https://kelee.one/Tool/Clash/Rule/LAN_SPLITTER.yaml
-    interval: 86400
   Direct:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/Direct.yaml
     url: https://kelee.one/Tool/Clash/Rule/Direct.yaml
-    interval: 86400
   Proxy:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/Proxy.yaml
     url: https://kelee.one/Tool/Clash/Rule/Proxy.yaml
-    interval: 86400
   ChinaDownloadCDN:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/ChinaDownloadCDN.yaml
     url: https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml
-    interval: 86400
   InternationalDownloadCDN:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/InternationalDownloadCDN.yaml
     url: https://kelee.one/Tool/Clash/Rule/InternationalDownloadCDN.yaml
-    interval: 86400
   AI:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/AI.yaml
     url: https://kelee.one/Tool/Clash/Rule/AI.yaml
-    interval: 86400
-  SpeedtestInternational:
+  SpeedtestIntl:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/SpeedtestInternational.yaml
     url: https://kelee.one/Tool/Clash/Rule/SpeedtestInternational.yaml
-    interval: 86400
   Steam:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/Steam.yaml
     url: https://rule.kelee.one/Clash/Steam.yaml
-    interval: 86400
   Emby:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/Emby.yaml
     url: https://raw.githubusercontent.com/leszz/Clash/refs/heads/mihomo/Rule/Emby.yaml
-    interval: 86400
-  TestFlight:
-    type: http
-    behavior: classical
-    url: https://rule.kelee.one/Clash/TestFlight.yaml
-    interval: 86400
   iCloudChina:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/iCloudChina.yaml
     url: https://kelee.one/Tool/Clash/Rule/iCloudChina.yaml
-    interval: 86400
   ApplePushNotificationService:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/ApplePushNotificationService.yaml
     url: https://kelee.one/Tool/Clash/Rule/ApplePushNotificationService.yaml
-    interval: 86400
   AppleSoftwareUpdates:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/AppleSoftwareUpdates.yaml
     url: https://kelee.one/Tool/Clash/Rule/AppleSoftwareUpdates.yaml
-    interval: 86400
-  AppleAccount:
+  AppleID:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/AppleID.yaml
     url: https://kelee.one/Tool/Clash/Rule/AppleAccount.yaml
-    interval: 86400
   AppStore:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/AppStore.yaml
     url: https://kelee.one/Tool/Clash/Rule/AppStore.yaml
-    interval: 86400
+  TestFlight:
+    type: http
+    behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/TestFlight.yaml
+    url: https://rule.kelee.one/Clash/TestFlight.yaml
   Microsoft:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/Microsoft.yaml
     url: https://rule.kelee.one/Clash/Microsoft.yaml
-    interval: 86400
   Google:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/Google.yaml
     url: https://rule.kelee.one/Clash/Google.yaml
-    interval: 86400
   Telegram:
     type: http
     behavior: classical
-    url: https://rule.kelee.one/Clash/Telegram.yaml
-    interval: 86400
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/Telegram.yaml
+    url: https://kelee.one/Tool/Clash/Rule/Telegram.yaml
   ESET_China:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: DIRECT
+    path: ./rules/ESET_China.yaml
     url: https://kelee.one/Tool/Clash/Rule/ESET_China.yaml
-    interval: 86400
-  GlobalMedia:
+  国际媒体:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: Github
+    path: ./rules/GlobalMedia_Classical.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml
-    interval: 86400
   Github:
     type: http
     behavior: classical
+    interval: 3600
+    format: yaml
+    proxy: Github
+    path: ./rules/Github.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml
-    interval: 86400
-
 rules:
-  - rule_set, LAN_SPLITTER, DIRECT
-  - rule_set, Direct, DIRECT
-  - rule_set, Proxy, 黑白名单
-  - rule_set, ChinaDownloadCDN, DIRECT
-  - rule_set, InternationalDownloadCDN, 境外下载
-  - rule_set, AI, AI
-  - rule_set, SpeedtestInternational, SpeedtestIntl
-  - rule_set, Steam, Steam
-  - rule_set, Emby, Emby
-  - rule_set, TestFlight, TestFlight
-  - rule_set, iCloudChina, DIRECT
-  - rule_set, ApplePushNotificationService, DIRECT
-  - rule_set, AppleSoftwareUpdates, DIRECT
-  - rule_set, AppleAccount, Apple账户
-  - rule_set, AppStore, App Store
-  - rule_set, Microsoft, Microsoft
-  - rule_set, Google, Google
-  - rule_set, Telegram, Telegram
-  - rule_set, ESET_China, DIRECT
-  - rule_set, GlobalMedia, 国际媒体
-  - rule_set, Github, Github
-  - geoip, CN, DIRECT
-  - domain_suffix, 8211992.xyz, DIRECT
-  - domain_suffix, autodesk.com, DIRECT
-  - match, 黑白名单
+  - RULE-SET, LAN, DIRECT
+  - RULE-SET, Direct, DIRECT
+  - RULE-SET, Proxy, 黑白名单
+  - RULE-SET, ChinaDownloadCDN, DIRECT
+  - RULE-SET, InternationalDownloadCDN, 境外下载
+  - RULE-SET, AI, AI
+  - RULE-SET, SpeedtestIntl, SpeedtestIntl
+  - RULE-SET, Steam, Steam
+  - RULE-SET, Emby, Emby
+  - RULE-SET, TestFlight, TestFlight
+  - RULE-SET, iCloudChina, DIRECT
+  - RULE-SET, ApplePushNotificationService, DIRECT
+  - RULE-SET, AppleSoftwareUpdates, DIRECT
+  - RULE-SET, AppleID, Apple账户
+  - RULE-SET, AppStore, App Store
+  - RULE-SET, Microsoft, Microsoft
+  - RULE-SET, Google, Google
+  - RULE-SET, Telegram, Telegram
+  - RULE-SET, ESET_China, DIRECT
+  - RULE-SET, 国际媒体, 国际媒体
+  - RULE-SET, Github, Github
+  - GEOIP, CN, DIRECT
+  - DOMAIN-SUFFIX, 8211992.xyz, DIRECT
+  - DOMAIN-SUFFIX, autodesk.com, DIRECT
+  - MATCH, 黑白名单
+bind-address: "*"
