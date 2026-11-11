@@ -263,6 +263,8 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
   - name: SpeedtestIntl
     type: select
+    url: http://cp.cloudflare.com/generate_204  # 显式指定一个国内直连和国外代理都能通的测速地址
+    interval: 3600
     include-all-providers: true
     filter: ^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$
     proxies:
@@ -373,6 +375,8 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
   - name: 特殊节点
     type: select
+    url: http://cp.cloudflare.com/generate_204  # 显式指定一个国内直连和国外代理都能通的测速地址
+    interval: 3600
     proxies:
       - DIRECT
     include-all-providers: true
@@ -548,7 +552,7 @@ rule-providers:
     behavior: classical
     interval: 3600
     format: yaml
-    proxy: Github
+    proxy: 国际媒体
     path: ./rules/GlobalMedia_Classical.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml
   Github:
