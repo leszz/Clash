@@ -3,7 +3,7 @@ geodata-loader: standard
 geo-auto-update: true
 geo-update-interval: 24
 find-process-mode: always
-global-client-fingerprint: chrome
+#global-client-fingerprint: chrome
 allow-lan: false
 log-level: info
 udp: true
