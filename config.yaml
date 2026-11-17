@@ -586,7 +586,7 @@ rules:
   - RULE-SET, 国际媒体, 国际媒体
   - RULE-SET, Github, Github
   - GEOIP, CN, DIRECT
-  - DOMAIN-SUFFIX, 8211992.xyz, DIRECT
-  - DOMAIN-SUFFIX, autodesk.com, DIRECT
+  - DOMAIN-KEYWORD, 8211992, DIRECT
+  - DOMAIN-KEYWORD, autodesk, DIRECT
   - MATCH, 黑白名单
 bind-address: "*"
